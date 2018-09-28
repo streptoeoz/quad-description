@@ -1393,18 +1393,18 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
     </collision>
   </link>
   <!-- Joints -->
-  <joint name="left_shoulder_pitch_joint" type="fixed">
-    <origin xyz="-0.65 0 0"/>
+  <joint name="left_shoulder_pitch_joint" type="revolute">
+    <origin xyz="0 -0.65 0"/>
     <parent link="shoulder"/>
     <child link="left_shoulder_pitch_cylinder"/>
-    <axis xyz="1 0 0"/>
+    <axis xyz="0 1 0"/>
     <limit effort="300" lower="-3.14" upper="3.14" velocity="0.1"/>
   </joint>
-  <joint name="left_shoulder_roll_joint" type="fixed">
-    <origin rpy="0 0.3 0" xyz="-0.15 0 0"/>
+  <joint name="left_shoulder_roll_joint" type="revolute">
+    <origin rpy="0 0.3 0" xyz="0 -0.15 0"/>
     <parent link="left_shoulder_pitch_cylinder"/>
     <child link="left_shoulder_roll_cylinder"/>
-    <axis xyz="0 1 0"/>
+    <axis xyz="1 0 0"/>
     <limit effort="300" lower="-3.14" upper="3.14" velocity="0.1"/>
   </joint>
   <joint name="left_shoulder_fixed_joint" type="fixed">
@@ -1412,14 +1412,14 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
     <parent link="left_shoulder_roll_cylinder"/>
     <child link="left_shoulder_bwn_cylinder"/>
   </joint>
-  <joint name="left_shoulder_yaw_joint" type="fixed">
+  <joint name="left_shoulder_yaw_joint" type="revolute">
     <origin xyz="0 0 -0.35"/>
     <parent link="left_shoulder_bwn_cylinder"/>
     <child link="left_shoulder_yaw_cylinder"/>
     <axis xyz="0 0 1"/>
     <limit effort="300" lower="-3.14" upper="3.14" velocity="0.1"/>
   </joint>
-  <joint name="left_elbow_joint" type="fixed">
+  <joint name="left_elbow_joint" type="revolute">
     <origin rpy="0 -0.3 0" xyz="0 0 -0.275"/>
     <parent link="left_shoulder_yaw_cylinder"/>
     <child link="left_elbow_cylinder"/>
@@ -1443,14 +1443,14 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
     <parent link="left_wrist_cylinder"/>
     <child link="left_gripper_fixed_link"/>
   </joint>
-  <joint name="left_finger_joint1" type="fixed">
+  <joint name="left_finger_joint1" type="revolute">
     <parent link="left_gripper_fixed_link"/>
     <child link="left_gripper_finger_link1"/>
     <origin xyz="0.0 0 0"/>
     <axis xyz="1 0 0"/>
     <limit effort="1" lower="-0.09" upper="0" velocity="1.0"/>
   </joint>
-  <joint name="left_finger_joint2" type="fixed">
+  <joint name="left_finger_joint2" type="revolute">
     <parent link="left_gripper_fixed_link"/>
     <child link="left_gripper_finger_link2"/>
     <origin xyz="0.0 0 0"/>
@@ -1604,18 +1604,18 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
     </collision>
   </link>
   <!-- Joints -->
-  <joint name="right_shoulder_pitch_joint" type="fixed">
-    <origin xyz="0.65 0 0"/>
+  <joint name="right_shoulder_pitch_joint" type="revolute">
+    <origin xyz="0 0.65 0"/>
     <parent link="shoulder"/>
     <child link="right_shoulder_pitch_cylinder"/>
-    <axis xyz="1 0 0"/>
+    <axis xyz="0 1 0"/>
     <limit effort="300" lower="-3.14" upper="3.14" velocity="0.1"/>
   </joint>
-  <joint name="right_shoulder_roll_joint" type="fixed">
-    <origin rpy="0 -0.3 0" xyz="0.15 0 0"/>
+  <joint name="right_shoulder_roll_joint" type="revolute">
+    <origin rpy="0 -0.3 0" xyz="0 0.15 0"/>
     <parent link="right_shoulder_pitch_cylinder"/>
     <child link="right_shoulder_roll_cylinder"/>
-    <axis xyz="0 1 0"/>
+    <axis xyz="1 0 0"/>
     <limit effort="300" lower="-3.14" upper="3.14" velocity="0.1"/>
   </joint>
   <joint name="right_shoulder_fixed_joint" type="fixed">
@@ -1623,14 +1623,14 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
     <parent link="right_shoulder_roll_cylinder"/>
     <child link="right_shoulder_bwn_cylinder"/>
   </joint>
-  <joint name="right_shoulder_yaw_joint" type="fixed">
+  <joint name="right_shoulder_yaw_joint" type="revolute">
     <origin xyz="0 0 -0.35"/>
     <parent link="right_shoulder_bwn_cylinder"/>
     <child link="right_shoulder_yaw_cylinder"/>
     <axis xyz="0 0 1"/>
     <limit effort="300" lower="-3.14" upper="3.14" velocity="0.1"/>
   </joint>
-  <joint name="right_elbow_joint" type="fixed">
+  <joint name="right_elbow_joint" type="revolute">
     <origin rpy="0 0.3 0" xyz="0 0 -0.275"/>
     <parent link="right_shoulder_yaw_cylinder"/>
     <child link="right_elbow_cylinder"/>
@@ -1654,14 +1654,14 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
     <parent link="right_wrist_cylinder"/>
     <child link="right_gripper_fixed_link"/>
   </joint>
-  <joint name="right_finger_joint1" type="fixed">
+  <joint name="right_finger_joint1" type="revolute">
     <parent link="right_gripper_fixed_link"/>
     <child link="right_gripper_finger_link1"/>
     <origin xyz="0.0 0 0"/>
     <axis xyz="1 0 0"/>
     <limit effort="1" lower="-0.09" upper="0" velocity="1.0"/>
   </joint>
-  <joint name="right_finger_joint2" type="fixed">
+  <joint name="right_finger_joint2" type="revolute">
     <parent link="right_gripper_fixed_link"/>
     <child link="right_gripper_finger_link2"/>
     <origin xyz="0.0 0 0"/>
