@@ -8,7 +8,7 @@
 	<xacro:include filename="$(find quadruped_description)/urdfs/leg/leg.gazebo.xacro"/>
 
 <!-- ================================== Leg ================================== -->
-   <xacro:macro name="leg" params="prefix reflect_lateral reflect_fb left_right front_back load_force_sensors">
+   <xacro:macro name="leg" params="prefix reflect_lateral reflect_fb load_force_sensors">
    <!--Joints-->
    <!-- joint between the thigh_roll_cylinder and pelvic -->
     <joint name="${prefix}_thigh_roll_joint" type="revolute">
@@ -17,8 +17,8 @@
       <child link="${prefix}_thigh_roll_cylinder"/>
       <axis xyz="0 1 0"/>
       <limit effort="${joint_limit_effort}" velocity="${joint_velocity}"
-      lower="${-(1-left_right)*thigh_roll_min*PI/180-left_right*thigh_roll_max*PI/180}"
-      upper="${(1-left_right)*thigh_roll_max*PI/180+left_right*thigh_roll_min*PI/180}"/>
+      lower="${-(1+reflect_lateral)*thigh_roll_max*PI/360-(1-reflect_lateral)*thigh_roll_min*PI/360}"
+      upper="${(1+reflect_lateral)*thigh_roll_min*PI/360+(1-reflect_lateral)*thigh_roll_max*PI/360}"/>
       <dynamics damping="0.1" friction="0" />
     </joint>
     <!-- fixed joint between the thigh_roll_cylinder and thigh_bwn_cylinder -->
@@ -29,7 +29,7 @@
     </joint>
     <!-- the joint which allows the pitch motion of the thigh -->
     <joint name="${prefix}_thigh_pitch_joint" type="revolute">
-      <origin xyz="0 0 -${thigh_p_r+thigh_bwn_l/2}" rpy="${-30*front_back*deg_to_rad} 0 0"/>
+      <origin xyz="0 0 -${thigh_p_r+thigh_bwn_l/2}" rpy="${-30*reflect_fb*deg_to_rad} 0 0"/>
       <parent link="${prefix}_thigh_bwn_cylinder"/>
       <child link="${prefix}_thigh_pitch_cylinder"/>
       <axis xyz="1 0 0"/>
@@ -44,12 +44,12 @@
     </joint>
     <!-- knee joint -->
     <joint name="${prefix}_knee_joint" type="revolute">
-      <origin xyz="0 0 -${knee_r+upper_leg_l/2}" rpy="${75*front_back*deg_to_rad} 0 0"/>
+      <origin xyz="0 0 -${knee_r+upper_leg_l/2}" rpy="${75*reflect_fb*deg_to_rad} 0 0"/>
       <parent link="${prefix}_upper_leg"/>
       <child link="${prefix}_knee_cylinder"/>
       <axis xyz="1 0 0"/>
-      <limit effort="${joint_limit_effort}" velocity="${joint_velocity}" lower="${(-(1+front_back)/2*knee_pitch_max-(1-front_back)/2*knee_pitch_min)*PI/180}"
-				         upper="${((1+front_back)/2*knee_pitch_min+(1-front_back)/2*knee_pitch_max)*PI/180}"/>
+      <limit effort="${joint_limit_effort}" velocity="${joint_velocity}" lower="${(-(1+reflect_fb)/2*knee_pitch_max-(1-reflect_fb)/2*knee_pitch_min)*PI/180}"
+				         upper="${((1+reflect_fb)/2*knee_pitch_min+(1-reflect_fb)/2*knee_pitch_max)*PI/180}"/>
       <dynamics damping="0.1" friction="0" />
     </joint>
     <!-- the permanent joint connecting the knee cylinder with the lower leg -->
