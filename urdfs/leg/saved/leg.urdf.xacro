@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+
+	<!-- Things that are needed only for Gazebo (not the physical robot). These include sensor and controller plugin specifications -->
+	<xacro:include filename="$(find quadruped_description)/urdfs/leg/leg.transmission.xacro"/>
+	<xacro:include filename="$(find quadruped_description)/urdfs/leg/leg.gazebo.xacro"/>
+
+<!-- ================================== Leg ================================== -->
+   <xacro:macro name="leg" params="prefix reflect_lateral reflect_fb left_right front_back load_force_sensors">
+   <!--Joints-->
+   <!-- joint between the thigh_roll_cylinder and pelvic -->
+    <joint name="${prefix}_thigh_roll_joint" type="revolute">
+      <origin xyz="${reflect_lateral*(pelvis_w/2+thigh_r_r)} ${reflect_fb*(pelvis_l/2-0.3)} -0.1"/>    <!-- 0.3 and 0.1 are the offset provided for the thigh_roll_cylinder from the front and centerline below-->
+      <parent link ="pelvis"/>
+      <child link="${prefix}_thigh_roll_cylinder"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="${joint_limit_effort}" velocity="${joint_velocity}"
+      lower="${-(1-left_right)*thigh_roll_min*PI/180-left_right*thigh_roll_max*PI/180}"
+      upper="${(1-left_right)*thigh_roll_max*PI/180+left_right*thigh_roll_min*PI/180}"/>
+      <dynamics damping="0.1" friction="0" />
+    </joint>
+    <!-- fixed joint between the thigh_roll_cylinder and thigh_bwn_cylinder -->
+    <joint name="${prefix}_thigh_bwn_joint" type="fixed">
+      <origin xyz="0 0 -${thigh_r_r+thigh_bwn_l/2}"/>
+      <parent link="${prefix}_thigh_roll_cylinder"/>
+      <child link="${prefix}_thigh_bwn_cylinder"/>
+    </joint>
+    <!-- the joint which allows the pitch motion of the thigh -->
+    <joint name="${prefix}_thigh_pitch_joint" type="revolute">
+      <origin xyz="0 0 -${thigh_p_r+thigh_bwn_l/2}" rpy="${-30*front_back*deg_to_rad} 0 0"/>
+      <parent link="${prefix}_thigh_bwn_cylinder"/>
+      <child link="${prefix}_thigh_pitch_cylinder"/>
+      <axis xyz="1 0 0"/>
+      <limit effort="${joint_limit_effort}" velocity="${joint_velocity}" lower="${thigh_pitch_min*PI/180}" upper="${thigh_pitch_max*PI/180}"/>
+      <dynamics damping="0.1" friction="0" />
+    </joint>
+    <!-- the permanent joint connecting upper leg and the thigh_pitch_cylinder -->
+    <joint name="${prefix}_leg_thigh_joint" type="fixed">
+      <origin xyz="0 0 -${thigh_p_r+upper_leg_l/2}"/>
+      <parent link="${prefix}_thigh_pitch_cylinder"/>
+      <child link="${prefix}_upper_leg"/>
+    </joint>
+    <!-- knee joint -->
+    <joint name="${prefix}_knee_joint" type="revolute">
+      <origin xyz="0 0 -${knee_r+upper_leg_l/2}" rpy="${75*front_back*deg_to_rad} 0 0"/>
+      <parent link="${prefix}_upper_leg"/>
+      <child link="${prefix}_knee_cylinder"/>
+      <axis xyz="1 0 0"/>
+      <limit effort="${joint_limit_effort}" velocity="${joint_velocity}" lower="${knee_pitch_min*PI/180}" upper="${knee_pitch_max*PI/180}"/>
+      <dynamics damping="0.1" friction="0" />
+    </joint>
+    <!-- the permanent joint connecting the knee cylinder with the lower leg -->
+    <joint name="${prefix}_knee_fixed_joint" type="fixed">
+      <origin xyz="0 0 -${knee_r+lower_leg_l/2}"/>
+      <parent link="${prefix}_knee_cylinder"/>
+      <child link="${prefix}_lower_leg"/>
+    </joint>
+    <!-- the permanent joint connecting the sole and lower_leg -->
+    <joint name="s${prefix}_sole_fixed_joint" type="fixed">
+      <origin xyz="0 0 -${sole_r+lower_leg_l/2-0.02}"/>
+      <parent link="${prefix}_lower_leg"/>
+      <child link="${prefix}_sole_sphere"/>
+    </joint>
+
+
+    <!-- Links -->
+    <!--- link which allows the lateral motion of the link -->
+    <link name="${prefix}_thigh_roll_cylinder">
+			<inertial>
+	       <mass value="${cylinder_m}" />
+				 <origin xyz="0 0 0"/>
+	       <inertia ixx="${0.08333*cylinder_m*cylinder_h*cylinder_h+0.25*cylinder_m*cylinder_r*cylinder_r}" ixy="0" ixz="0"
+	           iyy="${0.5*cylinder_m*cylinder_r*cylinder_r}" iyz="0"
+	           izz="${0.08333*cylinder_m*cylinder_h*cylinder_h+0.25*cylinder_m*cylinder_r*cylinder_r}" />
+	     </inertial>
+      <visual>
+        <geometry>
+          <cylinder radius="${thigh_r_r}" length="${thigh_r_l}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="${PI_2} 0 0"/>
+        <material name="red"/>
+      </visual>
+      <collision>
+				<origin xyz="0 0 0" rpy="${PI_2} 0 0"/>
+        <geometry>
+          <cylinder radius="${thigh_r_r}" length="${thigh_r_l}"/>
+        </geometry>
+      </collision>
+    </link>
+    <!--- the link which joints the thigh_roll_cylinder and thigh_pitch_cylinder -->
+    <link name="${prefix}_thigh_bwn_cylinder">
+			<inertial>
+	       <mass value="${cylinder_m}" />
+	       <origin xyz="0 0 0"/>
+	       <inertia ixx="${0.08333*cylinder_m*cylinder_h*cylinder_h+0.25*cylinder_m*cylinder_r*cylinder_r}" ixy="0" ixz="0"
+	           iyy="${0.08333*cylinder_m*cylinder_h*cylinder_h+0.25*cylinder_m*cylinder_r*cylinder_r}" iyz="0"
+	           izz="${0.5*cylinder_m*cylinder_r*cylinder_r}" />
+	     </inertial>
+      <visual>
+        <geometry>
+          <cylinder radius="${thigh_bwn_r}" length="${thigh_bwn_l}"/>
+        </geometry>
+        <origin xyz="0 0 0"/>
+        <material name="red"/>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="${thigh_bwn_r}" length="${thigh_bwn_l}"/>
+        </geometry>
+      </collision>
+    </link>
+    <!-- the link(cylinder) which is attached to the upper_leg -->
+    <link name="${prefix}_thigh_pitch_cylinder">
+			<inertial>
+	       <mass value="${cylinder_m}" />
+	       <origin xyz="0 0 0"/>
+	       <inertia ixx="${0.5*cylinder_m*cylinder_r*cylinder_r}" ixy="0" ixz="0"
+	           iyy="${0.08333*cylinder_m*cylinder_h*cylinder_h+0.25*cylinder_m*cylinder_r*cylinder_r}" iyz="0"
+	           izz="${0.08333*cylinder_m*cylinder_h*cylinder_h+0.25*cylinder_m*cylinder_r*cylinder_r}" />
+	     </inertial>
+      <visual>
+        <geometry>
+          <cylinder radius="${thigh_p_r}" length="${thigh_p_l}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 ${PI_2} 0"/>
+        <material name="red"/>
+      </visual>
+      <collision>
+				<origin xyz="0 0 0" rpy="0 ${PI_2} 0"/>
+        <geometry>
+          <cylinder radius="${thigh_p_r}" length="${thigh_p_l}"/>
+        </geometry>
+      </collision>
+    </link>
+    <!-- the upper leg -->
+    <link name="${prefix}_upper_leg">
+    <inertial>
+       <mass value="2.638" />
+       <origin xyz="0.150 0.026 0.0" />
+       <inertia ixx="0.0036" ixy="-0.003" ixz="0.0001"
+           iyy="0.027" iyz="0.00002"
+           izz="0.028" />
+     </inertial>
+      <visual>
+        <geometry>
+          <cylinder radius="${upper_leg_r}" length="${upper_leg_l}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <material name="red"/>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="${upper_leg_r}" length="${upper_leg_l}"/>
+        </geometry>
+      </collision>
+    </link>
+    <!-- the link(cylinder) at the knee which connects the upper and lower leg -->
+    <link name="${prefix}_knee_cylinder">
+			<inertial>
+	       <mass value="${cylinder_m}" />
+	       <origin xyz="0 0 0"/>
+	       <inertia ixx="${0.5*cylinder_m*cylinder_r*cylinder_r}" ixy="0" ixz="0"
+	           iyy="${0.08333*cylinder_m*cylinder_h*cylinder_h+0.25*cylinder_m*cylinder_r*cylinder_r}" iyz="0"
+	           izz="${0.08333*cylinder_m*cylinder_h*cylinder_h+0.25*cylinder_m*cylinder_r*cylinder_r}" />
+	     </inertial>
+      <visual>
+        <geometry>
+          <cylinder radius="${knee_r}" length="${knee_l}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 ${PI_2} 0"/>
+        <material name="red"/>
+      </visual>
+      <collision>
+				<origin xyz="0 0 0" rpy="0 ${PI_2} 0"/>
+        <geometry>
+          <cylinder radius="${knee_r}" length="${knee_l}"/>
+        </geometry>
+      </collision>
+    </link>
+    <!-- lower leg -->
+    <link name="${prefix}_lower_leg">
+      <inertial>
+       <mass value="0.881" />
+       <origin xyz="0.125 0.00004 -0.0001" />
+       <inertia ixx="0.0125" ixy="0.00006" ixz="-0.00001"
+           iyy="0.01256" iyz="0"
+           izz="0.0123" />
+     </inertial>
+      <visual>
+        <geometry>
+          <cylinder radius="${lower_leg_r}" length="${lower_leg_l}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <material name="red"/>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="${lower_leg_r}" length="${lower_leg_l}"/>
+        </geometry>
+      </collision>
+    </link>
+    <!-- the sphere which acts as the sole of the robot -->
+    <link name="${prefix}_sole_sphere">
+			<inertial>
+       <mass value="${foot_m}" />
+       <origin xyz="0 0 0"/>
+       <inertia ixx="${0.4*foot_m*foot_r*foot_r}" ixy="0" ixz="0"
+           iyy="${0.4*foot_m*foot_r*foot_r}" iyz="0"
+           izz="${0.4*foot_m*foot_r*foot_r}" />
+     </inertial>
+      <visual>
+        <geometry>
+          <sphere radius="${sole_r}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <material name="red"/>
+      </visual>
+      <collision>
+        <geometry>
+          <sphere radius="${sole_r}"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Extensions -->
+    <xacro:leg_transmission prefix="${prefix}"/>
+    <xacro:leg_gazebo prefix="${prefix}" load_force_sensors="${load_force_sensors}"/>
+  </xacro:macro>
+
+</robot>

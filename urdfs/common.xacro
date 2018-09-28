@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:property name="deg_to_rad" value="0.01745329251994329577"/>
+
+<!-- Colour -->
+<material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+</material>
+<material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+</material>
+<material name="white">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+</material>
+
+<!-- Constants -->
+<xacro:property name="M_SCALE" value="0.001 0.001 0.001"/>
+<xacro:property name="PI" value="3.14159265359"/>
+<xacro:property name="PI_2" value="1.57079632679"/>
+<xacro:property name="joint_limit_effort" value="300"/>
+<xacro:property name="joint_velocity" value="0.1"/>
+
+<!--/////////////////////Lower body parameters/////////////////////////////-->
+<!-- pelvis -->
+<xacro:property name="pelvis_l" value="2.0"/> <!-- pelvis length-->
+<xacro:property name="pelvis_w" value="1.2"/> <!-- pelvis width-->
+<xacro:property name="pelvis_h" value="0.5"/> <!-- pelvis height-->
+
+<!-- thigh_roll_cylinder -->
+<xacro:property name="thigh_r_l" value="0.2"/> <!-- length of the cylinder-->
+<xacro:property name="thigh_r_r" value="0.08"/> <!-- radius of the cylinder-->
+
+<!-- thigh_bwn_cylinder -->
+<xacro:property name="thigh_bwn_l" value="0.07"/> <!-- length of the cylinder-->
+<xacro:property name="thigh_bwn_r" value="0.03"/> <!-- radius of the cylinder-->
+
+<!-- thigh_pitch_cylinder -->
+<xacro:property name="thigh_p_l" value="0.2"/> <!-- length of the cylinder-->
+<xacro:property name="thigh_p_r" value="0.06"/> <!-- radius of the cylinder-->
+
+<!--- upper_leg (cylinder)-->
+<xacro:property name="upper_leg_l" value="0.7"/> <!--length of the leg above the knee-->
+<xacro:property name="upper_leg_r" value="0.075"/> <!--radius of the leg above the knee-->
+
+<!-- knee (cylinder) -->
+<xacro:property name="knee_l" value="0.2"/> <!-- knee cylinder length-->
+<xacro:property name="knee_r" value="0.06"/> <!-- knee cylinder radius-->
+
+<!-- lower leg (cylinder)-->
+<xacro:property name="lower_leg_l" value="0.6"/> <!-- length below knee -->
+<xacro:property name="lower_leg_r" value="0.06"/> <!-- radius below the knee -->
+
+<!-- sole_sphere -->
+<xacro:property name="sole_r" value="0.09"/>
+
+<!-- lower kinematics -->
+<xacro:property name="thigh_roll_min" value="15"/>
+<xacro:property name="thigh_roll_max" value="60"/>
+<xacro:property name="thigh_pitch_min" value="-60"/>
+<xacro:property name="thigh_pitch_max" value="60"/>
+<xacro:property name="knee_pitch_min" value="40"/>
+<xacro:property name="knee_pitch_max" value="150"/>
+
+<!-- cylinder of the lower limbs-->
+<xacro:property name="cylinder_h" value="0.06"/>
+<xacro:property name="cylinder_r" value="0.02"/>
+<xacro:property name="cylinder_m" value="0.1"/>
+
+<!-- foot -->
+<xacro:property name="foot_m" value="0.1"/>
+<xacro:property name="foot_r" value="0.02"/>
+
+<!-- //////////////////////////Upper body parameters///////////////////////-->
+
+<!-- Spine_cylinder-->
+<xacro:property name="spine_r" value="0.08"/>
+<xacro:property name="spine_l" value="0.3"/>
+
+<!-- Shoulder  -->
+<xacro:property name="shoulder_l" value="0.5"/>              <!-- the lenght width and height of the shoulder are taken wrt the entire robot and not the shoulder box -->
+<xacro:property name="shoulder_w" value="1.2"/>
+<xacro:property name="shoulder_h" value="0.3"/>
+
+<!-- shoulder_pitch_cylinder -->
+<xacro:property name="shoulder_pitch_r" value="0.08"/>
+<xacro:property name="shoulder_pitch_l" value="0.1"/>
+
+<!-- shoulder_roll_cylinder -->
+<xacro:property name="shoulder_roll_r" value="0.1"/>
+<xacro:property name="shoulder_roll_l" value="0.25"/>
+
+<!-- shoulder_bwn_link -->
+<xacro:property name="shoulder_bwn_r" value="0.1"/>
+<xacro:property name="shoulder_bwn_l" value="0.3"/>
+
+<!-- shoulder_yaw_cylinder -->
+<xacro:property name="shoulder_yaw_r" value="0.1"/>
+<xacro:property name="shoulder_yaw_l" value="0.4"/>
+
+<!-- elbow -->
+<xacro:property name="elbow_r" value="0.075"/>
+<xacro:property name="elbow_l" value="0.15"/>
+
+<!-- forearm -->
+<xacro:property name="forearm_r" value="0.075"/>
+<xacro:property name="forearm_l" value="0.4"/>
+
+<!-- wrist -->
+<xacro:property name="wrist_r" value="0.075"/>
+<xacro:property name="wrist_l" value="0.25"/>
+
+</robot>

@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<launch>
+
+	<arg name="sensors" default="false"/>
+	<arg name="gui" default="true"/>
+	<arg name="rviz_conf" default="$(find quadruped_description)/rviz/quadruped.rviz"/>
+
+	<!-- send quadruped urdf to param server and spawn it -->
+	<include file="$(find quadruped_description)/launch/upload.launch">
+	</include>
+
+	<!--publish the joint and robot states-->
+	<group if="$(arg gui)">
+		<node name="joint_state_publisher" pkg="joint_state_publisher"
+			type="joint_state_publisher" respawn="true" />
+			<param name="use_gui" value="$(arg gui)"/>
+			<param name="rate" value="200"/>
+	</group>
+	
+	<!--
+	<node name="state_pub" pkg="dwl_trial"
+		type="state_pub" respawn="true">
+	</node>
+	-->
+
+
+	<node name="robot_state_publisher" pkg="robot_state_publisher"
+		type="state_publisher" respawn="true">
+		<param name="publish_frequency" value="50" />
+		<param name="rate" value="50" />
+	</node>
+
+	<!-- run rviz -->
+	<node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(arg rviz_conf)"/>
+</launch>
+

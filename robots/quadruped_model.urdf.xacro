@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<robot name="quadruped" xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<!-- This argument allows us to load joint sensors that measure the internal wrenches -->
+	<xacro:arg name="load_force_sensors" default="false"/>
+
+	<!-- The following included files set up definitions of parts of the robot body -->
+	<xacro:include filename="$(find quadruped_description)/urdfs/common.xacro"/>
+	<!-- quadruped trunk -->
+	<xacro:include filename="$(find quadruped_description)/urdfs/trunk/trunk_model.urdf.xacro"/>
+	<!-- quadruped legs -->
+	<xacro:include filename="$(find quadruped_description)/urdfs/leg/leg.urdf.xacro"/>
+	<!-- quadruped torso -->
+	<xacro:include filename="$(find quadruped_description)/urdfs/torso/torso.urdf.xacro"/>
+	<!-- quadruped arm -->
+	<xacro:include filename="$(find quadruped_description)/urdfs/arm/arm.urdf.xacro"/>
+
+	<!-- generic simulator_gazebo plugins for starting mechanism control, ros time
+	<xacro:include filename="$(find quadruped_description)/gazebo/gazebo.urdf.xacro"/>-->
+
+	<!-- Now we can start using the macros included above to define the actual HyQ -->
+
+	<!-- The first use of a macro. This one was defined in trunk.urdf.xacro above.
+A macro like this will expand to a set of link and joint definitions, and to additional
+Gazebo-related extensions (sensor plugins, etc). The macro takes an argument, name,
+that equals "base", and uses it to generate names for its component links and joints
+(e.g., base_link). The included origin block is also an argument to the macro. By convention,
+the origin block defines where the component is w.r.t its parent (in this case the parent
+is the world frame). For more, see http://ros.org/wiki/xacro -->
+
+	<!-- body -->
+	<!-- trunk -->
+	<xacro:quad_trunk>
+		<!--origin xyz="-0.443 -0.191 -0.276" rpy="0 0 0"/-->
+	</xacro:quad_trunk>
+
+	<!-- legs -->
+	<xacro:leg prefix="forward_right" reflect_lateral="1" reflect_fb="1" left_right="1" front_back="1" load_force_sensors="$(arg load_force_sensors)">       <!-- forward right leg   -->
+  </xacro:leg>
+	<xacro:leg prefix="forward_left" reflect_lateral="-1" reflect_fb="1" left_right="0" front_back="1" load_force_sensors="$(arg load_force_sensors)">     <!--  forward left leg  -->
+  </xacro:leg>
+	<xacro:leg prefix="backward_right" reflect_lateral="1" reflect_fb="-1" left_right="1" front_back="-1" load_force_sensors="$(arg load_force_sensors)">     <!-- backward right leg  -->
+  </xacro:leg>
+	<xacro:leg prefix="backward_left" reflect_lateral="-1" reflect_fb="-1" left_right="0" front_back="-1" load_force_sensors="$(arg load_force_sensors)">   <!--  backward left leg -->
+  </xacro:leg>
+
+	<!-- torso -->
+	<xacro:quad_torso>
+	</xacro:quad_torso>
+
+	<!-- arm -->
+	<xacro:arm prefix="left" reflect="-1">
+	</xacro:arm>
+  <xacro:arm prefix="right" reflect="1">
+	</xacro:arm>
+
+</robot>

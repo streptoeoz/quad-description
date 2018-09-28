@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+
+	<!-- Things that are needed only for Gazebo (not the physical robot). These include sensor and controller plugin specifications
+	<xacro:include filename="$(find quadruped_description)/urdfs/trunk/trunk.gazebo.xacro"/>-->
+
+	<!-- ================================ Torso ================================ -->
+	<!-- The xacro macro xacro:hyq_base contains: base and trunk -->
+	<xacro:macro name="quad_torso">
+		<!-- Joints -->
+		<joint name="pelvis_shoulder_fixed_joint" type="fixed">
+			<origin xyz="0 ${pelvis_l/2-0.2} ${spine_l/2+pelvis_h/2}" />
+			<parent link="pelvis"/>
+			<child link="spine_cylinder"/>
+		</joint>
+
+		<joint name="shoulder_twist" type="fixed">
+			<origin xyz="0 0 ${spine_l/2+shoulder_h/2}"/>
+			<parent link="spine_cylinder"/>
+			<child link="shoulder"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="${joint_limit_effort}" velocity="${joint_velocity}" lower="-3.14" upper="3.14"/>
+		</joint>
+
+
+		<!-- Links -->
+		<link name="spine_cylinder">
+			<visual>
+				<geometry>
+					<cylinder radius="${spine_r}" length="${spine_l}"/>
+				</geometry>
+				<origin xyz="0 0 0"/>
+				<material name="red"/>
+			</visual>
+			<collision>
+				<geometry>
+					<cylinder radius="${spine_r}" length="${spine_l}"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<link name="shoulder">
+			<visual>
+				<geometry>
+					<box size="${shoulder_w} ${shoulder_l} ${shoulder_h}"/>
+				</geometry>
+				<origin xyz="0 0 0"/>
+				<material name="red"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${shoulder_w} ${shoulder_l} ${shoulder_h}"/>
+				</geometry>
+			</collision>
+		</link>
+	</xacro:macro>
+
+</robot>

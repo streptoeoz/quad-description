@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+
+	<!-- Things that are needed only for Gazebo (not the physical robot). These include sensor and controller plugin specifications -->
+	<xacro:include filename="$(find quadruped_description)/urdfs/trunk/trunk.gazebo.xacro"/>
+
+	<!-- ================================ Trunk ================================ -->
+	<!-- The xacro macro xacro:hyq_base contains: base and trunk -->
+	<xacro:macro name="quad_trunk">
+		<!-- Floating-base Joint -->
+		<joint name="base_footprint_joint" type="floating">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="base_footprint"/>
+        <child link="pelvis" />
+      </joint>
+
+		<!-- Links -->
+		<!-- Footprint link -->
+   <link name="base_footprint">
+      <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+              <box size="0.001 0.001 0.001" />
+          </geometry>
+      </visual>
+    </link>
+		<!-- Trunk link -->
+		<link name="pelvis">
+			<inertial>
+				<mass value="60.96" />
+				<origin xyz="0.056 0.0215 0.00358" />
+				<inertia ixx="1.572" ixy="0.028" ixz="-0.203"
+						iyy="8.502" iyz="-0.004"
+						izz="9.195" />
+			</inertial>
+			<visual>
+				<geometry>
+					<box size="${pelvis_w} ${pelvis_l} ${pelvis_h}"/>
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<material name="Red"/>
+			</visual>
+			<collision>
+				<geometry>
+					<box size="${pelvis_w} ${pelvis_l} ${pelvis_h}"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<!-- Extensions -->
+		<xacro:trunk_gazebo />
+	</xacro:macro>
+
+</robot>

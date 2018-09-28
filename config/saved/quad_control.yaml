@@ -1,0 +1,55 @@
+quadruped:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+  
+  # Position Controllers ---------------------------------------
+  fl_thigh_roll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: forward_left_thigh_roll_joint
+    pid: {p: 493.3, i: 0.0556, d: 8.05}
+  fl_thigh_pitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: forward_left_thigh_pitch_joint
+    pid: {p: 493.3, i: 0.0556, d: 8.05}
+  fl_knee_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: forward_left_knee_joint
+    pid: {p: 93.73, i: 21.9, d: 3.91}
+  fr_thigh_roll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: forward_right_thigh_roll_joint
+    pid: {p: 493.3, i: 0.0556, d: 8.05}
+  fr_thigh_pitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: forward_right_thigh_pitch_joint
+    pid: {p: 493.3, i: 0.0556, d: 8.05}
+  fr_knee_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: forward_right_knee_joint
+    pid: {p: 93.73, i: 21.9, d: 3.91}
+  bl_thigh_roll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: backward_left_thigh_roll_joint
+    pid: {p: 493.3, i: 0.0556, d: 8.05}
+  bl_thigh_pitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: backward_left_thigh_pitch_joint
+    pid: {493.3, i: 0.0556, d: 8.05}
+  bl_knee_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: backward_left_knee_joint
+    pid: {p: 93.73, i: 21.9, d: 3.91}
+  br_thigh_roll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: backward_right_thigh_roll_joint
+    pid: {p: 493.3, i: 0.0556, d: 8.05}
+  br_thigh_pitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: backward_right_thigh_pitch_joint
+    pid: {493.3, i: 0.0556, d: 8.05}
+  br_knee_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: backward_right_knee_joint
+    pid: {p: 93.73, i: 21.9, d: 3.91}

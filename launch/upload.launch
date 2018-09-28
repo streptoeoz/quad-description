@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<launch>
+        <param name="/quadruped/robot_config" value="$(find quadruped_description)/yarf/quad.yarf"/>
+	<!-- Load the sensors that measured the internal wrench in the joints
+	<arg name="internal_wrench" default="false"/> -->
+
+	<!-- send quadruped urdf to param server -->
+	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find quadruped_description)/robots/quadruped.urdf.xacro'"/>
+	<param name="quadruped/robot_model" command="$(find xacro)/xacro --inorder '$(find quadruped_description)/robots/quadruped.urdf.xacro'"/>
+</launch>
+

@@ -1,0 +1,158 @@
+digraph G {
+node [shape=box];
+"base_footprint" [label="base_footprint"];
+"pelvis" [label="pelvis"];
+"backward_left_thigh_roll_cylinder" [label="backward_left_thigh_roll_cylinder"];
+"backward_left_thigh_bwn_cylinder" [label="backward_left_thigh_bwn_cylinder"];
+"backward_left_thigh_pitch_cylinder" [label="backward_left_thigh_pitch_cylinder"];
+"backward_left_upper_leg" [label="backward_left_upper_leg"];
+"backward_left_knee_cylinder" [label="backward_left_knee_cylinder"];
+"backward_left_lower_leg" [label="backward_left_lower_leg"];
+"backward_left_sole_sphere" [label="backward_left_sole_sphere"];
+"backward_right_thigh_roll_cylinder" [label="backward_right_thigh_roll_cylinder"];
+"backward_right_thigh_bwn_cylinder" [label="backward_right_thigh_bwn_cylinder"];
+"backward_right_thigh_pitch_cylinder" [label="backward_right_thigh_pitch_cylinder"];
+"backward_right_upper_leg" [label="backward_right_upper_leg"];
+"backward_right_knee_cylinder" [label="backward_right_knee_cylinder"];
+"backward_right_lower_leg" [label="backward_right_lower_leg"];
+"backward_right_sole_sphere" [label="backward_right_sole_sphere"];
+"forward_left_thigh_roll_cylinder" [label="forward_left_thigh_roll_cylinder"];
+"forward_left_thigh_bwn_cylinder" [label="forward_left_thigh_bwn_cylinder"];
+"forward_left_thigh_pitch_cylinder" [label="forward_left_thigh_pitch_cylinder"];
+"forward_left_upper_leg" [label="forward_left_upper_leg"];
+"forward_left_knee_cylinder" [label="forward_left_knee_cylinder"];
+"forward_left_lower_leg" [label="forward_left_lower_leg"];
+"forward_left_sole_sphere" [label="forward_left_sole_sphere"];
+"forward_right_thigh_roll_cylinder" [label="forward_right_thigh_roll_cylinder"];
+"forward_right_thigh_bwn_cylinder" [label="forward_right_thigh_bwn_cylinder"];
+"forward_right_thigh_pitch_cylinder" [label="forward_right_thigh_pitch_cylinder"];
+"forward_right_upper_leg" [label="forward_right_upper_leg"];
+"forward_right_knee_cylinder" [label="forward_right_knee_cylinder"];
+"forward_right_lower_leg" [label="forward_right_lower_leg"];
+"forward_right_sole_sphere" [label="forward_right_sole_sphere"];
+"spine_cylinder" [label="spine_cylinder"];
+"shoulder" [label="shoulder"];
+"left_shoulder_pitch_cylinder" [label="left_shoulder_pitch_cylinder"];
+"left_shoulder_roll_cylinder" [label="left_shoulder_roll_cylinder"];
+"left_shoulder_bwn_cylinder" [label="left_shoulder_bwn_cylinder"];
+"left_shoulder_yaw_cylinder" [label="left_shoulder_yaw_cylinder"];
+"left_elbow_cylinder" [label="left_elbow_cylinder"];
+"left_forearm_cylinder" [label="left_forearm_cylinder"];
+"left_wrist_cylinder" [label="left_wrist_cylinder"];
+"left_gripper_fixed_link" [label="left_gripper_fixed_link"];
+"left_gripper_finger_link1" [label="left_gripper_finger_link1"];
+"left_gripper_finger_link2" [label="left_gripper_finger_link2"];
+"right_shoulder_pitch_cylinder" [label="right_shoulder_pitch_cylinder"];
+"right_shoulder_roll_cylinder" [label="right_shoulder_roll_cylinder"];
+"right_shoulder_bwn_cylinder" [label="right_shoulder_bwn_cylinder"];
+"right_shoulder_yaw_cylinder" [label="right_shoulder_yaw_cylinder"];
+"right_elbow_cylinder" [label="right_elbow_cylinder"];
+"right_forearm_cylinder" [label="right_forearm_cylinder"];
+"right_wrist_cylinder" [label="right_wrist_cylinder"];
+"right_gripper_fixed_link" [label="right_gripper_fixed_link"];
+"right_gripper_finger_link1" [label="right_gripper_finger_link1"];
+"right_gripper_finger_link2" [label="right_gripper_finger_link2"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_footprint" -> "base_footprint_joint" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"base_footprint_joint" -> "pelvis"
+"pelvis" -> "backward_left_thigh_roll_joint" [label="xyz: -0.68 -0.7 -0.1 \nrpy: 0 -0 0"]
+"backward_left_thigh_roll_joint" -> "backward_left_thigh_roll_cylinder"
+"backward_left_thigh_roll_cylinder" -> "backward_left_thigh_bwn_joint" [label="xyz: 0 0 -0.115 \nrpy: 0 -0 0"]
+"backward_left_thigh_bwn_joint" -> "backward_left_thigh_bwn_cylinder"
+"backward_left_thigh_bwn_cylinder" -> "backward_left_thigh_pitch_joint" [label="xyz: 0 0 -0.095 \nrpy: 0.523599 -0 0"]
+"backward_left_thigh_pitch_joint" -> "backward_left_thigh_pitch_cylinder"
+"backward_left_thigh_pitch_cylinder" -> "backward_left_leg_thigh_joint" [label="xyz: 0 0 -0.41 \nrpy: 0 -0 0"]
+"backward_left_leg_thigh_joint" -> "backward_left_upper_leg"
+"backward_left_upper_leg" -> "backward_left_knee_joint" [label="xyz: 0 0 -0.41 \nrpy: -1.309 0 0"]
+"backward_left_knee_joint" -> "backward_left_knee_cylinder"
+"backward_left_knee_cylinder" -> "backward_left_knee_fixed_joint" [label="xyz: 0 0 -0.36 \nrpy: 0 -0 0"]
+"backward_left_knee_fixed_joint" -> "backward_left_lower_leg"
+"backward_left_lower_leg" -> "backward_left_sole_fixed_joint" [label="xyz: 0 0 -0.37 \nrpy: 0 -0 0"]
+"backward_left_sole_fixed_joint" -> "backward_left_sole_sphere"
+"pelvis" -> "backward_right_thigh_roll_joint" [label="xyz: 0.68 -0.7 -0.1 \nrpy: 0 -0 0"]
+"backward_right_thigh_roll_joint" -> "backward_right_thigh_roll_cylinder"
+"backward_right_thigh_roll_cylinder" -> "backward_right_thigh_bwn_joint" [label="xyz: 0 0 -0.115 \nrpy: 0 -0 0"]
+"backward_right_thigh_bwn_joint" -> "backward_right_thigh_bwn_cylinder"
+"backward_right_thigh_bwn_cylinder" -> "backward_right_thigh_pitch_joint" [label="xyz: 0 0 -0.095 \nrpy: 0.523599 -0 0"]
+"backward_right_thigh_pitch_joint" -> "backward_right_thigh_pitch_cylinder"
+"backward_right_thigh_pitch_cylinder" -> "backward_right_leg_thigh_joint" [label="xyz: 0 0 -0.41 \nrpy: 0 -0 0"]
+"backward_right_leg_thigh_joint" -> "backward_right_upper_leg"
+"backward_right_upper_leg" -> "backward_right_knee_joint" [label="xyz: 0 0 -0.41 \nrpy: -1.309 0 0"]
+"backward_right_knee_joint" -> "backward_right_knee_cylinder"
+"backward_right_knee_cylinder" -> "backward_right_knee_fixed_joint" [label="xyz: 0 0 -0.36 \nrpy: 0 -0 0"]
+"backward_right_knee_fixed_joint" -> "backward_right_lower_leg"
+"backward_right_lower_leg" -> "backward_right_sole_fixed_joint" [label="xyz: 0 0 -0.37 \nrpy: 0 -0 0"]
+"backward_right_sole_fixed_joint" -> "backward_right_sole_sphere"
+"pelvis" -> "forward_left_thigh_roll_joint" [label="xyz: -0.68 0.7 -0.1 \nrpy: 0 -0 0"]
+"forward_left_thigh_roll_joint" -> "forward_left_thigh_roll_cylinder"
+"forward_left_thigh_roll_cylinder" -> "forward_left_thigh_bwn_joint" [label="xyz: 0 0 -0.115 \nrpy: 0 -0 0"]
+"forward_left_thigh_bwn_joint" -> "forward_left_thigh_bwn_cylinder"
+"forward_left_thigh_bwn_cylinder" -> "forward_left_thigh_pitch_joint" [label="xyz: 0 0 -0.095 \nrpy: -0.523599 0 0"]
+"forward_left_thigh_pitch_joint" -> "forward_left_thigh_pitch_cylinder"
+"forward_left_thigh_pitch_cylinder" -> "forward_left_leg_thigh_joint" [label="xyz: 0 0 -0.41 \nrpy: 0 -0 0"]
+"forward_left_leg_thigh_joint" -> "forward_left_upper_leg"
+"forward_left_upper_leg" -> "forward_left_knee_joint" [label="xyz: 0 0 -0.41 \nrpy: 1.309 -0 0"]
+"forward_left_knee_joint" -> "forward_left_knee_cylinder"
+"forward_left_knee_cylinder" -> "forward_left_knee_fixed_joint" [label="xyz: 0 0 -0.36 \nrpy: 0 -0 0"]
+"forward_left_knee_fixed_joint" -> "forward_left_lower_leg"
+"forward_left_lower_leg" -> "forward_left_sole_fixed_joint" [label="xyz: 0 0 -0.37 \nrpy: 0 -0 0"]
+"forward_left_sole_fixed_joint" -> "forward_left_sole_sphere"
+"pelvis" -> "forward_right_thigh_roll_joint" [label="xyz: 0.68 0.7 -0.1 \nrpy: 0 -0 0"]
+"forward_right_thigh_roll_joint" -> "forward_right_thigh_roll_cylinder"
+"forward_right_thigh_roll_cylinder" -> "forward_right_thigh_bwn_joint" [label="xyz: 0 0 -0.115 \nrpy: 0 -0 0"]
+"forward_right_thigh_bwn_joint" -> "forward_right_thigh_bwn_cylinder"
+"forward_right_thigh_bwn_cylinder" -> "forward_right_thigh_pitch_joint" [label="xyz: 0 0 -0.095 \nrpy: -0.523599 0 0"]
+"forward_right_thigh_pitch_joint" -> "forward_right_thigh_pitch_cylinder"
+"forward_right_thigh_pitch_cylinder" -> "forward_right_leg_thigh_joint" [label="xyz: 0 0 -0.41 \nrpy: 0 -0 0"]
+"forward_right_leg_thigh_joint" -> "forward_right_upper_leg"
+"forward_right_upper_leg" -> "forward_right_knee_joint" [label="xyz: 0 0 -0.41 \nrpy: 1.309 -0 0"]
+"forward_right_knee_joint" -> "forward_right_knee_cylinder"
+"forward_right_knee_cylinder" -> "forward_right_knee_fixed_joint" [label="xyz: 0 0 -0.36 \nrpy: 0 -0 0"]
+"forward_right_knee_fixed_joint" -> "forward_right_lower_leg"
+"forward_right_lower_leg" -> "forward_right_sole_fixed_joint" [label="xyz: 0 0 -0.37 \nrpy: 0 -0 0"]
+"forward_right_sole_fixed_joint" -> "forward_right_sole_sphere"
+"pelvis" -> "pelvis_shoulder_fixed_joint" [label="xyz: 0 0.8 0.4 \nrpy: 0 -0 0"]
+"pelvis_shoulder_fixed_joint" -> "spine_cylinder"
+"spine_cylinder" -> "shoulder_twist" [label="xyz: 0 0 0.3 \nrpy: 0 -0 0"]
+"shoulder_twist" -> "shoulder"
+"shoulder" -> "left_shoulder_pitch_joint" [label="xyz: -0.65 0 0 \nrpy: 0 -0 0"]
+"left_shoulder_pitch_joint" -> "left_shoulder_pitch_cylinder"
+"left_shoulder_pitch_cylinder" -> "left_shoulder_roll_joint" [label="xyz: -0.15 0 0 \nrpy: 0 0.3 0"]
+"left_shoulder_roll_joint" -> "left_shoulder_roll_cylinder"
+"left_shoulder_roll_cylinder" -> "left_shoulder_fixed_joint" [label="xyz: 0 0 -0.25 \nrpy: 0 -0 0"]
+"left_shoulder_fixed_joint" -> "left_shoulder_bwn_cylinder"
+"left_shoulder_bwn_cylinder" -> "left_shoulder_yaw_joint" [label="xyz: 0 0 -0.35 \nrpy: 0 -0 0"]
+"left_shoulder_yaw_joint" -> "left_shoulder_yaw_cylinder"
+"left_shoulder_yaw_cylinder" -> "left_elbow_joint" [label="xyz: 0 0 -0.275 \nrpy: 0 -0.3 0"]
+"left_elbow_joint" -> "left_elbow_cylinder"
+"left_elbow_cylinder" -> "left_forearm_fixed_joint" [label="xyz: 0 0 -0.275 \nrpy: 0 -0 0"]
+"left_forearm_fixed_joint" -> "left_forearm_cylinder"
+"left_forearm_cylinder" -> "left_wrist_joint" [label="xyz: 0 0 -0.325 \nrpy: 0 -0 0"]
+"left_wrist_joint" -> "left_wrist_cylinder"
+"left_wrist_cylinder" -> "left_gripper_fixed_joint" [label="xyz: 0 0 -0.135 \nrpy: 0 -0 0"]
+"left_gripper_fixed_joint" -> "left_gripper_fixed_link"
+"left_gripper_fixed_link" -> "left_finger_joint1" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"left_finger_joint1" -> "left_gripper_finger_link1"
+"left_gripper_fixed_link" -> "left_finger_joint2" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"left_finger_joint2" -> "left_gripper_finger_link2"
+"shoulder" -> "right_shoulder_pitch_joint" [label="xyz: 0.65 0 0 \nrpy: 0 -0 0"]
+"right_shoulder_pitch_joint" -> "right_shoulder_pitch_cylinder"
+"right_shoulder_pitch_cylinder" -> "right_shoulder_roll_joint" [label="xyz: 0.15 0 0 \nrpy: 0 -0.3 0"]
+"right_shoulder_roll_joint" -> "right_shoulder_roll_cylinder"
+"right_shoulder_roll_cylinder" -> "right_shoulder_fixed_joint" [label="xyz: 0 0 -0.25 \nrpy: 0 -0 0"]
+"right_shoulder_fixed_joint" -> "right_shoulder_bwn_cylinder"
+"right_shoulder_bwn_cylinder" -> "right_shoulder_yaw_joint" [label="xyz: 0 0 -0.35 \nrpy: 0 -0 0"]
+"right_shoulder_yaw_joint" -> "right_shoulder_yaw_cylinder"
+"right_shoulder_yaw_cylinder" -> "right_elbow_joint" [label="xyz: 0 0 -0.275 \nrpy: 0 0.3 0"]
+"right_elbow_joint" -> "right_elbow_cylinder"
+"right_elbow_cylinder" -> "right_forearm_fixed_joint" [label="xyz: 0 0 -0.275 \nrpy: 0 -0 0"]
+"right_forearm_fixed_joint" -> "right_forearm_cylinder"
+"right_forearm_cylinder" -> "right_wrist_joint" [label="xyz: 0 0 -0.325 \nrpy: 0 -0 0"]
+"right_wrist_joint" -> "right_wrist_cylinder"
+"right_wrist_cylinder" -> "right_gripper_fixed_joint" [label="xyz: 0 0 -0.135 \nrpy: 0 -0 0"]
+"right_gripper_fixed_joint" -> "right_gripper_fixed_link"
+"right_gripper_fixed_link" -> "right_finger_joint1" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"right_finger_joint1" -> "right_gripper_finger_link1"
+"right_gripper_fixed_link" -> "right_finger_joint2" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"right_finger_joint2" -> "right_gripper_finger_link2"
+}

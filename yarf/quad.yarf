@@ -1,0 +1,25 @@
+robot:
+  # Names of the feet
+  feet: [forward_left_sole_sphere, forward_right_sole_sphere, backward_left_sole_sphere, backward_right_sole_sphere]
+  default_pose:
+    # LF foot
+    forward_left_thigh_roll_joint: 0.0
+    forward_left_thigh_pitch_joint: 0.0
+    forward_left_leg_knee_joint: 0.0
+    # RF foot
+    forward_right_thigh_roll_joint: 0.0
+    forward_right_thigh_pitch_joint: 0.0
+    forward_right_leg_knee_joint: 0.0
+    # LH foot
+    backward_left_thigh_roll_joint: 0.0
+    backward_left_thigh_pitch_joint: 0.0
+    backward_left_leg_knee_joint: 0.0
+    # RH foot
+    backward_right_thigh_roll_joint: 0.0
+    backward_right_thigh_pitch_joint: 0.0
+    backward_right_leg_knee_joint: 0.0
+    # troso
+    right_shoulder_roll_joint: -0.3
+    right_elbow_joint: 0.3
+    left_shoulder_roll_joint: 0.3
+    left_elbow_joint: -0.3
