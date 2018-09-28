@@ -10,7 +10,7 @@
 	<xacro:macro name="quad_torso">
 		<!-- Joints -->
 		<joint name="pelvis_shoulder_fixed_joint" type="fixed">
-			<origin xyz="0 ${pelvis_l/2-0.2} ${spine_l/2+pelvis_h/2}" />
+			<origin xyz="${pelvis_l/2-0.2} 0 ${spine_l/2+pelvis_h/2}" />
 			<parent link="pelvis"/>
 			<child link="spine_cylinder"/>
 		</joint>

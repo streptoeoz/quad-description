@@ -67,14 +67,14 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
     </inertial>
     <visual>
       <geometry>
-        <box size="1.2 2.0 0.5"/>
+        <box size="2.0 1.2 0.5"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
       <geometry>
-        <box size="1.2 2.0 0.5"/>
+        <box size="2.0 1.2 0.5"/>
       </geometry>
     </collision>
   </link>
@@ -85,11 +85,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
   <!--Joints-->
   <!-- joint between the thigh_roll_cylinder and pelvic -->
   <joint name="forward_right_thigh_roll_joint" type="revolute">
-    <origin xyz="0.68 0.7 -0.1"/>
+    <origin xyz="0.7 -0.68 -0.1"/>
     <!-- 0.3 and 0.1 are the offset provided for the thigh_roll_cylinder from the front and centerline below-->
     <parent link="pelvis"/>
     <child link="forward_right_thigh_roll_cylinder"/>
-    <axis xyz="0 1 0"/>
+    <axis xyz="1 0 0"/>
     <limit effort="300" lower="-1.0471975512" upper="0.261799387799" velocity="0.1"/>
     <dynamics damping="0.1" friction="0"/>
   </joint>
@@ -101,11 +101,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
   </joint>
   <!-- the joint which allows the pitch motion of the thigh -->
   <joint name="forward_right_thigh_pitch_joint" type="revolute">
-    <origin rpy="-0.523598775598 0 0" xyz="0 0 -0.095"/>
+    <origin rpy="0 0.523598775598 0" xyz="0 0 -0.095"/>
     <parent link="forward_right_thigh_bwn_cylinder"/>
     <child link="forward_right_thigh_pitch_cylinder"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-1.0471975512" upper="1.0471975512" velocity="0.1"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="300" lower="-1.5707963268" upper="0.523598775598" velocity="0.1"/>
     <dynamics damping="0.1" friction="0"/>
   </joint>
   <!-- the permanent joint connecting upper leg and the thigh_pitch_cylinder -->
@@ -116,11 +116,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
   </joint>
   <!-- knee joint -->
   <joint name="forward_right_knee_joint" type="revolute">
-    <origin rpy="1.308996939 0 0" xyz="0 0 -0.41"/>
+    <origin rpy="0 -1.308996939 0" xyz="0 0 -0.41"/>
     <parent link="forward_right_upper_leg"/>
     <child link="forward_right_knee_cylinder"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-2.61799387799" upper="0.698131700798" velocity="0.1"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="300" lower="-0.698131700798" upper="2.61799387799" velocity="0.1"/>
     <dynamics damping="0.1" friction="0"/>
   </joint>
   <!-- the permanent joint connecting the knee cylinder with the lower leg -->
@@ -147,11 +147,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
       <geometry>
         <cylinder length="0.2" radius="0.08"/>
       </geometry>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
+      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
+      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
         <cylinder length="0.2" radius="0.08"/>
       </geometry>
@@ -188,11 +188,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
@@ -229,11 +229,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
@@ -402,11 +402,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
   <!--Joints-->
   <!-- joint between the thigh_roll_cylinder and pelvic -->
   <joint name="forward_left_thigh_roll_joint" type="revolute">
-    <origin xyz="-0.68 0.7 -0.1"/>
+    <origin xyz="0.7 0.68 -0.1"/>
     <!-- 0.3 and 0.1 are the offset provided for the thigh_roll_cylinder from the front and centerline below-->
     <parent link="pelvis"/>
     <child link="forward_left_thigh_roll_cylinder"/>
-    <axis xyz="0 1 0"/>
+    <axis xyz="1 0 0"/>
     <limit effort="300" lower="-0.261799387799" upper="1.0471975512" velocity="0.1"/>
     <dynamics damping="0.1" friction="0"/>
   </joint>
@@ -418,11 +418,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
   </joint>
   <!-- the joint which allows the pitch motion of the thigh -->
   <joint name="forward_left_thigh_pitch_joint" type="revolute">
-    <origin rpy="-0.523598775598 0 0" xyz="0 0 -0.095"/>
+    <origin rpy="0 0.523598775598 0" xyz="0 0 -0.095"/>
     <parent link="forward_left_thigh_bwn_cylinder"/>
     <child link="forward_left_thigh_pitch_cylinder"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-1.0471975512" upper="1.0471975512" velocity="0.1"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="300" lower="-1.5707963268" upper="0.523598775598" velocity="0.1"/>
     <dynamics damping="0.1" friction="0"/>
   </joint>
   <!-- the permanent joint connecting upper leg and the thigh_pitch_cylinder -->
@@ -433,11 +433,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
   </joint>
   <!-- knee joint -->
   <joint name="forward_left_knee_joint" type="revolute">
-    <origin rpy="1.308996939 0 0" xyz="0 0 -0.41"/>
+    <origin rpy="0 -1.308996939 0" xyz="0 0 -0.41"/>
     <parent link="forward_left_upper_leg"/>
     <child link="forward_left_knee_cylinder"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-2.61799387799" upper="0.698131700798" velocity="0.1"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="300" lower="-0.698131700798" upper="2.61799387799" velocity="0.1"/>
     <dynamics damping="0.1" friction="0"/>
   </joint>
   <!-- the permanent joint connecting the knee cylinder with the lower leg -->
@@ -464,11 +464,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
       <geometry>
         <cylinder length="0.2" radius="0.08"/>
       </geometry>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
+      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
+      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
         <cylinder length="0.2" radius="0.08"/>
       </geometry>
@@ -505,11 +505,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
@@ -546,11 +546,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
@@ -719,11 +719,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
   <!--Joints-->
   <!-- joint between the thigh_roll_cylinder and pelvic -->
   <joint name="backward_right_thigh_roll_joint" type="revolute">
-    <origin xyz="0.68 -0.7 -0.1"/>
+    <origin xyz="-0.7 -0.68 -0.1"/>
     <!-- 0.3 and 0.1 are the offset provided for the thigh_roll_cylinder from the front and centerline below-->
     <parent link="pelvis"/>
     <child link="backward_right_thigh_roll_cylinder"/>
-    <axis xyz="0 1 0"/>
+    <axis xyz="1 0 0"/>
     <limit effort="300" lower="-1.0471975512" upper="0.261799387799" velocity="0.1"/>
     <dynamics damping="0.1" friction="0"/>
   </joint>
@@ -735,11 +735,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
   </joint>
   <!-- the joint which allows the pitch motion of the thigh -->
   <joint name="backward_right_thigh_pitch_joint" type="revolute">
-    <origin rpy="0.523598775598 0 0" xyz="0 0 -0.095"/>
+    <origin rpy="0 -0.523598775598 0" xyz="0 0 -0.095"/>
     <parent link="backward_right_thigh_bwn_cylinder"/>
     <child link="backward_right_thigh_pitch_cylinder"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-1.0471975512" upper="1.0471975512" velocity="0.1"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="300" lower="-1.5707963268" upper="0.523598775598" velocity="0.1"/>
     <dynamics damping="0.1" friction="0"/>
   </joint>
   <!-- the permanent joint connecting upper leg and the thigh_pitch_cylinder -->
@@ -750,11 +750,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
   </joint>
   <!-- knee joint -->
   <joint name="backward_right_knee_joint" type="revolute">
-    <origin rpy="-1.308996939 0 0" xyz="0 0 -0.41"/>
+    <origin rpy="0 1.308996939 0" xyz="0 0 -0.41"/>
     <parent link="backward_right_upper_leg"/>
     <child link="backward_right_knee_cylinder"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-0.698131700798" upper="2.61799387799" velocity="0.1"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="300" lower="-2.61799387799" upper="0.698131700798" velocity="0.1"/>
     <dynamics damping="0.1" friction="0"/>
   </joint>
   <!-- the permanent joint connecting the knee cylinder with the lower leg -->
@@ -781,11 +781,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
       <geometry>
         <cylinder length="0.2" radius="0.08"/>
       </geometry>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
+      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
+      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
         <cylinder length="0.2" radius="0.08"/>
       </geometry>
@@ -822,11 +822,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
@@ -863,11 +863,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
@@ -1036,11 +1036,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
   <!--Joints-->
   <!-- joint between the thigh_roll_cylinder and pelvic -->
   <joint name="backward_left_thigh_roll_joint" type="revolute">
-    <origin xyz="-0.68 -0.7 -0.1"/>
+    <origin xyz="-0.7 0.68 -0.1"/>
     <!-- 0.3 and 0.1 are the offset provided for the thigh_roll_cylinder from the front and centerline below-->
     <parent link="pelvis"/>
     <child link="backward_left_thigh_roll_cylinder"/>
-    <axis xyz="0 1 0"/>
+    <axis xyz="1 0 0"/>
     <limit effort="300" lower="-0.261799387799" upper="1.0471975512" velocity="0.1"/>
     <dynamics damping="0.1" friction="0"/>
   </joint>
@@ -1052,11 +1052,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
   </joint>
   <!-- the joint which allows the pitch motion of the thigh -->
   <joint name="backward_left_thigh_pitch_joint" type="revolute">
-    <origin rpy="0.523598775598 0 0" xyz="0 0 -0.095"/>
+    <origin rpy="0 -0.523598775598 0" xyz="0 0 -0.095"/>
     <parent link="backward_left_thigh_bwn_cylinder"/>
     <child link="backward_left_thigh_pitch_cylinder"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-1.0471975512" upper="1.0471975512" velocity="0.1"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="300" lower="-1.5707963268" upper="0.523598775598" velocity="0.1"/>
     <dynamics damping="0.1" friction="0"/>
   </joint>
   <!-- the permanent joint connecting upper leg and the thigh_pitch_cylinder -->
@@ -1067,11 +1067,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
   </joint>
   <!-- knee joint -->
   <joint name="backward_left_knee_joint" type="revolute">
-    <origin rpy="-1.308996939 0 0" xyz="0 0 -0.41"/>
+    <origin rpy="0 1.308996939 0" xyz="0 0 -0.41"/>
     <parent link="backward_left_upper_leg"/>
     <child link="backward_left_knee_cylinder"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-0.698131700798" upper="2.61799387799" velocity="0.1"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="300" lower="-2.61799387799" upper="0.698131700798" velocity="0.1"/>
     <dynamics damping="0.1" friction="0"/>
   </joint>
   <!-- the permanent joint connecting the knee cylinder with the lower leg -->
@@ -1098,11 +1098,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
       <geometry>
         <cylinder length="0.2" radius="0.08"/>
       </geometry>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
+      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
+      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
         <cylinder length="0.2" radius="0.08"/>
       </geometry>
@@ -1139,11 +1139,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
@@ -1180,11 +1180,11 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
-      <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
         <cylinder length="0.2" radius="0.06"/>
       </geometry>
@@ -1352,7 +1352,7 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
   </gazebo>
   <!-- Joints -->
   <joint name="pelvis_shoulder_fixed_joint" type="fixed">
-    <origin xyz="0 0.8 0.4"/>
+    <origin xyz="0.8 0 0.4"/>
     <parent link="pelvis"/>
     <child link="spine_cylinder"/>
   </joint>

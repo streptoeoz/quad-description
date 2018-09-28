@@ -58,8 +58,8 @@
 <!-- lower kinematics -->
 <xacro:property name="thigh_roll_min" value="15"/>
 <xacro:property name="thigh_roll_max" value="60"/>
-<xacro:property name="thigh_pitch_min" value="-60"/>
-<xacro:property name="thigh_pitch_max" value="60"/>
+<xacro:property name="thigh_pitch_min" value="-90"/>
+<xacro:property name="thigh_pitch_max" value="30"/>
 <xacro:property name="knee_pitch_min" value="40"/>
 <xacro:property name="knee_pitch_max" value="150"/>
 

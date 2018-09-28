@@ -36,14 +36,14 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<box size="${pelvis_w} ${pelvis_l} ${pelvis_h}"/>
+					<box size="${pelvis_l} ${pelvis_w} ${pelvis_h}"/>
 				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<material name="red"/>
 			</visual>
 			<collision>
 				<geometry>
-					<box size="${pelvis_w} ${pelvis_l} ${pelvis_h}"/>
+					<box size="${pelvis_l} ${pelvis_w} ${pelvis_h}"/>
 				</geometry>
 			</collision>
 		</link>
