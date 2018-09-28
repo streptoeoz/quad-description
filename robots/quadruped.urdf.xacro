@@ -50,9 +50,9 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
 	</xacro:quad_torso>
 
 	<!-- arm -->
-	<xacro:arm prefix="left" reflect="-1">
+	<xacro:arm prefix="left" reflect="1">
 	</xacro:arm>
-  <xacro:arm prefix="right" reflect="1">
+  <xacro:arm prefix="right" reflect="-1">
 	</xacro:arm>
 
 </robot>

@@ -43,14 +43,14 @@
 		<link name="shoulder">
 			<visual>
 				<geometry>
-					<box size="${shoulder_w} ${shoulder_l} ${shoulder_h}"/>
+					<box size="${shoulder_l} ${shoulder_w} ${shoulder_h}"/>
 				</geometry>
 				<origin xyz="0 0 0"/>
 				<material name="red"/>
 			</visual>
 			<collision>
 				<geometry>
-					<box size="${shoulder_w} ${shoulder_l} ${shoulder_h}"/>
+					<box size="${shoulder_l} ${shoulder_w} ${shoulder_h}"/>
 				</geometry>
 			</collision>
 		</link>

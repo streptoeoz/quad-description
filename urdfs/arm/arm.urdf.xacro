@@ -9,7 +9,7 @@
 	<xacro:macro name="arm" params="prefix reflect">
 
   <!-- Joints -->
-  <joint name="${prefix}_shoulder_pitch_joint" type="revolute">
+  <joint name="${prefix}_shoulder_pitch_joint" type="fixed">
     <origin xyz="0 ${reflect*(shoulder_w/2+shoulder_pitch_l/2)} 0"/>
     <parent link="shoulder"/>
     <child link="${prefix}_shoulder_pitch_cylinder"/>
@@ -17,8 +17,8 @@
     <limit effort="${joint_limit_effort}" velocity="${joint_velocity}" lower="-3.14" upper="3.14"/>
   </joint>
 
-	<joint name="${prefix}_shoulder_roll_joint" type="revolute">
-    <origin xyz="0 ${reflect*(shoulder_roll_r+shoulder_pitch_l/2)} 0"  rpy="0 ${-reflect*0.3} 0"/>
+	<joint name="${prefix}_shoulder_roll_joint" type="fixed">
+    <origin xyz="0 ${reflect*(shoulder_roll_r+shoulder_pitch_l/2)} 0"  rpy="${reflect*0.3} 0 0"/>
     <parent link="${prefix}_shoulder_pitch_cylinder"/>
     <child link="${prefix}_shoulder_roll_cylinder"/>
     <axis xyz="1 0 0"/>
@@ -31,7 +31,7 @@
     <child link="${prefix}_shoulder_bwn_cylinder"/>
   </joint>
 
-	<joint name="${prefix}_shoulder_yaw_joint" type="revolute">
+	<joint name="${prefix}_shoulder_yaw_joint" type="fixed">
     <origin xyz="0 0 -${shoulder_bwn_l/2+shoulder_yaw_l/2}"/>
     <parent link="${prefix}_shoulder_bwn_cylinder"/>
     <child link="${prefix}_shoulder_yaw_cylinder"/>
@@ -39,11 +39,11 @@
     <limit effort="${joint_limit_effort}" velocity="${joint_velocity}" lower="-3.14" upper="3.14"/>
   </joint>
 
-	<joint name="${prefix}_elbow_joint" type="revolute">
-    <origin xyz="0 0 -${elbow_r+shoulder_yaw_l/2}" rpy="0 ${reflect*0.3} 0"/>
+	<joint name="${prefix}_elbow_joint" type="fixed">
+    <origin xyz="0 0 -${elbow_r+shoulder_yaw_l/2}" rpy="${-reflect*0.3} 0 0"/>
     <parent link="${prefix}_shoulder_yaw_cylinder"/>
     <child link="${prefix}_elbow_cylinder"/>
-    <axis xyz="0 1 0"/>
+    <axis xyz="1 0 0"/>
     <limit effort="${joint_limit_effort}" velocity="${joint_velocity}" lower="-3.14" upper="3.14"/>
   </joint>
 
@@ -67,7 +67,7 @@
     <child link="${prefix}_gripper_fixed_link"/>
   </joint>
 
-	<joint name="${prefix}_finger_joint1" type="revolute">
+	<joint name="${prefix}_finger_joint1" type="fixed">
       <parent link="${prefix}_gripper_fixed_link"/>
       <child link="${prefix}_gripper_finger_link1"/>
       <origin xyz="0.0 0 0" />
@@ -75,7 +75,7 @@
       <limit effort="1" lower="-0.09" upper="0" velocity="1.0"/>
   </joint>
 
-	<joint name="${prefix}_finger_joint2" type="revolute">
+	<joint name="${prefix}_finger_joint2" type="fixed">
       <parent link="${prefix}_gripper_fixed_link"/>
       <child link="${prefix}_gripper_finger_link2"/>
       <origin xyz="0.0 0 0" />
@@ -90,11 +90,11 @@
       <geometry>
         <cylinder radius="${shoulder_pitch_r}" length="${shoulder_pitch_l}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="0 ${PI_2} 0"/>
+      <origin xyz="0 0 0" rpy="${PI_2} 0 0"/>
       <material name="red"/>
     </visual>
     <collision>
-			<origin xyz="0 0 0" rpy="0 ${PI_2} 0"/>
+			<origin xyz="0 0 0" rpy="${PI_2} 0 0"/>
       <geometry>
         <cylinder radius="${shoulder_pitch_r}" length="${shoulder_pitch_l}"/>
       </geometry>
@@ -106,11 +106,11 @@
       <geometry>
         <cylinder radius="${shoulder_roll_r}" length="${shoulder_roll_l}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="${PI_2} 0 0"/>
+      <origin xyz="0 0 0" rpy="0 ${PI_2} 0"/>
       <material name="red"/>
     </visual>
     <collision>
-			<origin xyz="0 0 0" rpy="${PI_2} 0 0"/>
+			<origin xyz="0 0 0" rpy="0 ${PI_2} 0"/>
       <geometry>
         <cylinder radius="${shoulder_roll_r}" length="${shoulder_roll_l}"/>
       </geometry>
@@ -152,11 +152,11 @@
       <geometry>
         <cylinder radius="${elbow_r}" length="${elbow_l}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="${PI_2} 0 0"/>
+      <origin xyz="0 0 0" rpy="0 ${PI_2} 0"/>
       <material name="red"/>
     </visual>
     <collision>
-			<origin xyz="0 0 0" rpy="${PI_2} 0 0"/>
+			<origin xyz="0 0 0" rpy="0 ${PI_2} 0"/>
       <geometry>
         <cylinder radius="${elbow_r}" length="${elbow_l}"/>
       </geometry>
