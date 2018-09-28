@@ -36,13 +36,13 @@ is the world frame). For more, see http://ros.org/wiki/xacro -->
 	</xacro:quad_trunk>
 
 	<!-- legs -->
-	<xacro:leg prefix="forward_right" reflect_lateral="1" reflect_fb="1" left_right="1" front_back="1" load_force_sensors="$(arg load_force_sensors)">       <!-- forward right leg   -->
+	<xacro:leg prefix="forward_right" reflect_lateral="1" reflect_fb="1" load_force_sensors="$(arg load_force_sensors)">       <!-- forward right leg   -->
   </xacro:leg>
-	<xacro:leg prefix="forward_left" reflect_lateral="-1" reflect_fb="1" left_right="0" front_back="1" load_force_sensors="$(arg load_force_sensors)">     <!--  forward left leg  -->
+	<xacro:leg prefix="forward_left" reflect_lateral="-1" reflect_fb="1" load_force_sensors="$(arg load_force_sensors)">     <!--  forward left leg  -->
   </xacro:leg>
-	<xacro:leg prefix="backward_right" reflect_lateral="1" reflect_fb="-1" left_right="1" front_back="-1" load_force_sensors="$(arg load_force_sensors)">     <!-- backward right leg  -->
+	<xacro:leg prefix="backward_right" reflect_lateral="1" reflect_fb="-1" load_force_sensors="$(arg load_force_sensors)">     <!-- backward right leg  -->
   </xacro:leg>
-	<xacro:leg prefix="backward_left" reflect_lateral="-1" reflect_fb="-1" left_right="0" front_back="-1" load_force_sensors="$(arg load_force_sensors)">   <!--  backward left leg -->
+	<xacro:leg prefix="backward_left" reflect_lateral="-1" reflect_fb="-1" load_force_sensors="$(arg load_force_sensors)">   <!--  backward left leg -->
   </xacro:leg>
 
 	<!-- torso -->
